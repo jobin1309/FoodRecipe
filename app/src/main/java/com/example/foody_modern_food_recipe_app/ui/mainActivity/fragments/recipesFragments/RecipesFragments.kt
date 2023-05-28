@@ -1,16 +1,16 @@
-package com.example.foody_modern_food_recipe_app.ui.fragments.recipesFragments
+package com.example.foody_modern_food_recipe_app.ui.mainActivity.fragments.recipesFragments
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
 import android.view.View.GONE
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foody_modern_food_recipe_app.R
 import com.example.foody_modern_food_recipe_app.viewModels.MainViewModel
 import com.example.foody_modern_food_recipe_app.adapters.RecipeAdapter
 import com.example.foody_modern_food_recipe_app.databinding.FragmentRecipesFragmentsBinding
@@ -22,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RecipesFragments : Fragment() {
+class RecipesFragments : Fragment(), SearchView.OnQueryTextListener {
 
     private var _binding: FragmentRecipesFragmentsBinding? = null
     private val binding get() = _binding!!
@@ -47,10 +47,35 @@ class RecipesFragments : Fragment() {
         binding.mainViewModel =
             mViewModel //we need to access the Mainviewmodel to data-binding of Mainviewmodel variable name in xml
 
+
+        setHasOptionsMenu(true)
         setUpRecyclerView();
         readDatabase()
         return binding.root
 
+    }
+
+
+    /** MENU SEARCH */
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.search_recipes, menu)
+
+        val search = menu.findItem(R.id.menu_search)
+        val searchView = search?.actionView as? SearchView
+        searchView?.isSubmitButtonEnabled = true
+        searchView?.setOnQueryTextListener(this)
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null) {
+            searchApiData(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(p0: String?): Boolean { // its not advised to put query api function inside query text change because everytime text change it calls api, which is bad
+        return true
     }
 
     private fun setUpRecyclerView() {
@@ -97,10 +122,44 @@ class RecipesFragments : Fragment() {
                 is NetworkResult.Loading -> {
                     binding.shimmerLayout.startShimmer();
                 }
+                else -> {}
             }
 
         }
     }
+     private fun searchApiData(searchQuery: String) {
+        binding.shimmerLayout.startShimmer()
+        mViewModel.searchRecipes(recipeViewModel.applySearchQuery(searchQuery))
+        mViewModel.searchRecipeResponse.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is NetworkResult.Success -> {
+                    binding.shimmerLayout.stopShimmer();
+                    val foodRecipe = response.data
+                    foodRecipe.let {
+                        if (it != null) {
+                            mAdapter.setData(it)
+                        }
+                    }
+
+                    Log.d("RecipesSearchFragment", "Success: ${response.data}")
+                }
+                is NetworkResult.Error -> {
+                    binding.shimmerLayout.stopShimmer()
+                    loadDataFromCache()
+                    val errorMessage = response.message.toString()
+                    Log.e("RecipesSearchFragment", "Error: $errorMessage")
+                    Toast.makeText(context, response.message.toString(), Toast.LENGTH_LONG).show()
+                }
+                is NetworkResult.Loading -> {
+                    binding.shimmerLayout.startShimmer()
+                    Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
+                }
+//
+                else -> {}
+            }
+        }
+    }
+
 
 
     private fun loadDataFromCache() {

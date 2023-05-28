@@ -1,9 +1,16 @@
 package com.example.foody_modern_food_recipe_app.models
 
 
+import android.os.Parcelable
+import androidx.room.TypeConverters
+import com.example.foody_modern_food_recipe_app.data.database.room.RecipesTypeConverter
 import com.example.foody_modern_food_recipe_app.models.ExtendedIngredient
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
+@Parcelize
+@TypeConverters(RecipesTypeConverter::class)
 data class Result(
     @SerializedName("aggregateLikes")
     val aggregateLikes: Int,
@@ -12,7 +19,7 @@ data class Result(
     @SerializedName("dairyFree")
     val dairyFree: Boolean,
     @SerializedName("extendedIngredients")
-    val extendedIngredients: List<ExtendedIngredient>,
+    val extendedIngredients: @RawValue List<ExtendedIngredient>,
     @SerializedName("glutenFree")
     val glutenFree: Boolean,
     @SerializedName("id")
@@ -38,4 +45,4 @@ data class Result(
     val veryHealthy: Boolean,
 
 
-    )
+    ): Parcelable

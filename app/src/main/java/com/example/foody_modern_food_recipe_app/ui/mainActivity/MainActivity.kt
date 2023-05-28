@@ -1,4 +1,4 @@
-package com.example.foody_modern_food_recipe_app.ui
+package com.example.foody_modern_food_recipe_app.ui.mainActivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
 //
-//        binding.bottomNavigationView.setupWithNavController(navController)
+        binding.bottomNavigationView.setupWithNavController(navController)
 
         setupActionBarWithNavController(navController)
 

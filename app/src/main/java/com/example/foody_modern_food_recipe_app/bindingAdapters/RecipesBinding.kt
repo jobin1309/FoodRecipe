@@ -4,8 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.example.foody_modern_food_recipe_app.data.database.room.RecipeDatabase
-import com.example.foody_modern_food_recipe_app.data.database.room.RecipesEntity
+import com.example.foody_modern_food_recipe_app.data.database.room.entities.RecipesEntity
 import com.example.foody_modern_food_recipe_app.models.FoodRecipe
 import com.example.foody_modern_food_recipe_app.util.NetworkResult
 

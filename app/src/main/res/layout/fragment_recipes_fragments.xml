@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.foody_modern_food_recipe_app.ui.fragments.recipesFragments.RecipesFragments">
+        tools:context="com.example.foody_modern_food_recipe_app.ui.mainActivity.fragments.recipesFragments.RecipesFragments">
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
