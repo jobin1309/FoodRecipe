@@ -7,8 +7,8 @@
     <fragment
         android:id="@+id/recipesFragments"
         android:name="com.example.foody_modern_food_recipe_app.ui.mainActivity.fragments.recipesFragments.RecipesFragments"
-        android:label="fragment_recipes_fragments"
-        tools:layout="@layout/fragment_recipes_fragments" >
+        android:label="Recipes"
+        tools:layout="@layout/fragment_recipes_fragments">
         <action
             android:id="@+id/action_recipesFragments_to_favoriteFragmentsRecipes"
             app:destination="@id/favoriteFragmentsRecipes" />
@@ -22,17 +22,20 @@
     <fragment
         android:id="@+id/favoriteFragmentsRecipes"
         android:name="com.example.foody_modern_food_recipe_app.ui.mainActivity.fragments.favoriteFragment.FavoriteFragmentsRecipes"
-        android:label="fragment_favorite_fragments_recipes"
-        tools:layout="@layout/fragment_favorite_fragments_recipes" >
+        android:label="Favorites"
+        tools:layout="@layout/fragment_favorite_fragments_recipes">
         <action
             android:id="@+id/action_favoriteFragmentsRecipes_to_recipesFragments"
             app:destination="@id/recipesFragments" />
+        <action
+            android:id="@+id/action_favoriteFragmentsRecipes_to_detailsActivity"
+            app:destination="@id/detailsActivity" />
     </fragment>
     <fragment
         android:id="@+id/foodJokesFragments"
         android:name="com.example.foody_modern_food_recipe_app.ui.mainActivity.fragments.foodJokeFragment.FoodJokesFragments"
-        android:label="fragment_food_jokes_fragments"
-        tools:layout="@layout/fragment_food_jokes_fragments" >
+        android:label="Food Jokes"
+        tools:layout="@layout/fragment_food_jokes_fragments">
         <action
             android:id="@+id/action_foodJokesFragments_to_recipesFragments"
             app:destination="@id/recipesFragments" />

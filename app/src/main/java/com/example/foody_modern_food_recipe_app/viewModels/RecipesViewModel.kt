@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 
 import com.example.foody_modern_food_recipe_app.data.network.DataStoreRepository
+import com.example.foody_modern_food_recipe_app.util.Constants
 import com.example.foody_modern_food_recipe_app.util.Constants.Companion.API_KEY
 import com.example.foody_modern_food_recipe_app.util.Constants.Companion.DEFAULT_DIET_TYPE
 import com.example.foody_modern_food_recipe_app.util.Constants.Companion.DEFAULT_MEAL_TYPE
@@ -24,7 +25,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RecipesViewModel @Inject constructor(
     application: Application,
-    private val dataStoreRepository: DataStoreRepository,
+    dataStoreRepository: DataStoreRepository,
 
     ) : AndroidViewModel(application) {
 
@@ -40,25 +41,18 @@ class RecipesViewModel @Inject constructor(
 //        }
 
 
+
     fun applyQueries(): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
 
-        viewModelScope.launch {
-            readMealAndDietType.collect { value ->
-                mealType = value.selectedMealType
-                dietType = value.selectedDietType
+        queries[QUERY_NUMBER] = "50"
+        queries[QUERY_API_KEY] = API_KEY
+        queries[QUERY_TYPE] = "break fast"
+        queries[QUERY_DIET] = "Whole30"
+        queries[QUERY_RECIPE_INFO] = "true"
+        queries[QUERY_INGREDIENTS] = "true"
 
-            }
-
-            queries[QUERY_NUMBER] = DEFAULT_RECIPES_NUMBER
-            queries[QUERY_API_KEY] = API_KEY
-            queries[QUERY_TYPE] = mealType
-            queries[QUERY_DIET] = dietType
-            queries[QUERY_RECIPE_INFO] = "true"
-            queries[QUERY_INGREDIENTS] = "true"
-        }
         return queries
-
     }
 
     fun applySearchQuery(searchQuery: String): HashMap<String, String> {

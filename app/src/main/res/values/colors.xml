@@ -31,5 +31,12 @@
     <color name="actionBarBackgroundColor">@color/colorPrimary</color>
     <color name="strokeColor">@color/lightMediumGray</color>
     <color name="cardBackgroundColor">@color/white</color>
+    <color name="cardBackgroundLightColor">#A1ADEF</color>
+
     <color name="ingredient_title_color">@color/darkGray</color>
+
+    <color name="statusBarColor">@color/colorPrimary</color>
+    <color name="contextualStatusBarColor">@color/darker</color>
+
+
 </resources>

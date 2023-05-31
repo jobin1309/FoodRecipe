@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.foody_modern_food_recipe_app.ui.mainActivity.fragments.favoriteFragment.FavoriteFragmentsRecipes">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+         <variable
+             name="mainViewModel"
+             type="com.example.foody_modern_food_recipe_app.viewModels.MainViewModel" />
+
+        <variable
+            name="mAdapter"
+            type="com.example.foody_modern_food_recipe_app.adapters.FavoriteRecipeAdapter" />
+    </data>
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="FAVORITE FOOD FRAGMENT" />
+        tools:context="com.example.foody_modern_food_recipe_app.ui.mainActivity.fragments.favoriteFragment.FavoriteFragmentsRecipes">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/favorite_RecyclerView"
+            setData="@{mAdapter}"
+            viewVisibility="@{mainViewModel.readFavorites}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/fav_no_imageView"
+            android:layout_width="137dp"
+            android:layout_height="116dp"
+            android:layout_marginTop="244dp"
+            android:visibility="invisible"
+            android:alpha="0.5"
+            viewVisibility="@{mainViewModel.readFavorites}"
+            android:src="@drawable/baseline_menu_book_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/favorite_RecyclerView" />
+
+        <TextView
+            android:id="@+id/fav_no_textView"
+            android:layout_width="164dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="56dp"
+            android:text="No favorites yet"
+            android:visibility="invisible"
+            android:textSize="24sp"
+            viewVisibility="@{mainViewModel.readFavorites}"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fav_no_imageView" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

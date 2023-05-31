@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.foody_modern_food_recipe_app.data.database.room.entities.FavoriteEntity
 import com.example.foody_modern_food_recipe_app.databinding.RecipesRowLayoutBinding
 import com.example.foody_modern_food_recipe_app.models.FoodRecipe
 import com.example.foody_modern_food_recipe_app.util.RecipesDiffUtil
@@ -60,6 +61,8 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.MyViewHolder>() {
         recipes = newData.results
         diffUtilResult.dispatchUpdatesTo(this)
     }
+
+
 
 
 }

@@ -84,7 +84,7 @@ class RecipesFragments : Fragment(), SearchView.OnQueryTextListener {
         showShimmerEffect();
     }
 
-
+//change observe to observe once
     private fun readDatabase() {
 
         lifecycleScope.launch {
@@ -115,6 +115,7 @@ class RecipesFragments : Fragment(), SearchView.OnQueryTextListener {
                 }
                 is NetworkResult.Error -> {
                     loadDataFromCache() //if the user face some error, past data will show
+                    Log.d("RecipeResponseError","Error")
                     binding.shimmerLayout.stopShimmer()
                     binding.shimmerLayout.visibility = GONE
                     Toast.makeText(context, response.message.toString(), Toast.LENGTH_LONG).show()
@@ -122,7 +123,7 @@ class RecipesFragments : Fragment(), SearchView.OnQueryTextListener {
                 is NetworkResult.Loading -> {
                     binding.shimmerLayout.startShimmer();
                 }
-                else -> {}
+
             }
 
         }
@@ -148,14 +149,13 @@ class RecipesFragments : Fragment(), SearchView.OnQueryTextListener {
                     loadDataFromCache()
                     val errorMessage = response.message.toString()
                     Log.e("RecipesSearchFragment", "Error: $errorMessage")
-                    Toast.makeText(context, response.message.toString(), Toast.LENGTH_LONG).show()
+
                 }
                 is NetworkResult.Loading -> {
                     binding.shimmerLayout.startShimmer()
-                    Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
+
                 }
 //
-                else -> {}
             }
         }
     }

@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import coil.load
 import com.example.foody_modern_food_recipe_app.R
 import com.example.foody_modern_food_recipe_app.ui.mainActivity.fragments.recipesFragments.RecipesFragmentsDirections
+import org.jsoup.Jsoup
 
 class RecipesRowBinding {
 
@@ -19,15 +20,18 @@ class RecipesRowBinding {
 
         @BindingAdapter("onRecipeClickListener")
         @JvmStatic
-        fun onRecipeClickListener(recipeRowLayout: ConstraintLayout, result: com.example.foody_modern_food_recipe_app.models.Result) {
+        fun onRecipeClickListener(
+            recipeRowLayout: ConstraintLayout,
+            result: com.example.foody_modern_food_recipe_app.models.Result
+        ) {
             recipeRowLayout.setOnClickListener {
-                try{
-                    val action = RecipesFragmentsDirections.actionRecipesFragmentsToDetailsActivity(result)
+                try {
+                    val action =
+                        RecipesFragmentsDirections.actionRecipesFragmentsToDetailsActivity(result)
                     recipeRowLayout.findNavController().navigate(action)
 
 
-                }
-                catch (e: Exception) {
+                } catch (e: Exception) {
                     Log.d("OnRecipeClickListener", e.toString())
                 }
             }
@@ -80,6 +84,17 @@ class RecipesRowBinding {
             }
         }
 
+        @BindingAdapter("parseHtml")
+        @JvmStatic
+        fun parseHtml(textView: TextView, description: String?) {
+            if (description != null) {
+                val desc = Jsoup.parse(description).text()
+                textView.text = desc
+            }
+        }
+
 //
     }
+
+//
 }

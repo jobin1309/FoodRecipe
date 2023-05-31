@@ -12,7 +12,6 @@ class RecipesBinding {
 
     companion object {
 
-
         @BindingAdapter(
             "readApiResponse",
             "readDatabase",

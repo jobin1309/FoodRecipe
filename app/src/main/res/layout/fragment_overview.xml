@@ -259,11 +259,14 @@
         app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 android:id="@+id/summaryTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
