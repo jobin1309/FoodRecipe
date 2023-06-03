@@ -20,7 +20,7 @@ object DatabaseModule {
     @Provides //3rd party library
     fun providesDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
         context, RecipeDatabase::class.java, DATABASE_NAME
-    ).build()
+    ).fallbackToDestructiveMigration().build()
 
 
     @Provides

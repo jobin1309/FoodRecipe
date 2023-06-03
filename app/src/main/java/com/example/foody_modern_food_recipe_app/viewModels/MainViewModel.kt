@@ -10,6 +10,7 @@ import com.example.foody_modern_food_recipe_app.MyApplication
 import com.example.foody_modern_food_recipe_app.data.Repository
 import com.example.foody_modern_food_recipe_app.data.database.room.entities.RecipesEntity
 import com.example.foody_modern_food_recipe_app.data.database.room.entities.FavoriteEntity
+import com.example.foody_modern_food_recipe_app.data.database.room.entities.FoodJokeEntity
 import com.example.foody_modern_food_recipe_app.models.FoodJoke
 import com.example.foody_modern_food_recipe_app.models.FoodRecipe
 import com.example.foody_modern_food_recipe_app.util.NetworkResult
@@ -35,6 +36,8 @@ class MainViewModel @Inject constructor(
     val readFavorites: LiveData<List<FavoriteEntity>> =
         repository.local.readFavoritesRecipes().asLiveData()
 
+    val readFoodJoke: LiveData<List<FoodJokeEntity>> = repository.local.readFoodJoke().asLiveData()
+
 
     private fun insertRecipes(recipesEntity: RecipesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
@@ -46,6 +49,12 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.insertFavoriteRecipes(favoriteEntity)
         }
+
+    fun insertFoodJoke(foodJokeEntity: FoodJokeEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertFoodJoke(foodJokeEntity)
+        }
+    }
 
     fun deleteFavRecipe(favoriteEntity: FavoriteEntity) =
         viewModelScope.launch(Dispatchers.IO) {
@@ -188,7 +197,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun handleFoodRecipesJokeResponse(response: Response<FoodJoke>): NetworkResult<FoodJoke> {
+    private fun handleFoodRecipesJokeResponse(response: Response<FoodJoke>): NetworkResult<FoodJoke>? {
         when {
             response.message().toString().contains("timeout") -> {
                 return NetworkResult.Error("Timeout")

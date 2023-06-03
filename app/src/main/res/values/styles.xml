@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application them -->
+    <!-- Base application theme -->
 
 
-    <style name="Apptheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-
+    <style name="Apptheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/design_default_color_primary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="windowActionBar">false</item>
+        <item name="windowActionBar">true</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+
+
+    <style name="SplashScreenStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <style name="DetailActivityStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">

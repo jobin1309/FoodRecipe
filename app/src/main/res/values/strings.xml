@@ -40,4 +40,5 @@
     <string name="sign_in">Sign In</string>
     <string name="not_registered_yet_sign_up">Not Registered Yet , Sign Up !</string>
     <string name="no_favorite_recipes">No Favorite Recipes</string>
+    <string name="share">menu</string>
 </resources>

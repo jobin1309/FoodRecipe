@@ -1,9 +1,14 @@
 package com.example.foody_modern_food_recipe_app.ui.mainActivity
 
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.Navigation
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
-import androidx.databinding.DataBindingUtil
+import android.os.Handler
+import android.os.Looper
 import androidx.navigation.NavController
 import androidx.navigation.NavHost
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -21,21 +26,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//
-//
+
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        setTheme(R.style.Apptheme)
         setContentView(binding.root)
 
-
-
-        var navHostFragment =
+        // Set up the NavController
+        val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHost
-
         navController = navHostFragment.navController
 
-//
+        // Set up the bottom navigation view
         binding.bottomNavigationView.setupWithNavController(navController)
 
+        // Set up the action bar with the NavController
         setupActionBarWithNavController(navController)
 
     }

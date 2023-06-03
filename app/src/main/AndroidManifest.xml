@@ -14,8 +14,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FoodyModern_Food_Recipe_App"
-        tools:targetApi="31">
+        android:theme="@style/SplashScreenStyle"
+        tools:targetApi="33">
         <activity
             android:name=".ui.detailActivity.DetailsActivity"
             android:exported="false"

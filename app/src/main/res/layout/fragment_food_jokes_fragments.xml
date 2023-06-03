@@ -1,32 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.foody_modern_food_recipe_app.ui.mainActivity.fragments.foodJokeFragment.FoodJokesFragments">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+          <variable
+              name="mainViewModel"
+              type="com.example.foody_modern_food_recipe_app.viewModels.MainViewModel" />
+    </data>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/food_joke_card"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginStart="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498"
-        app:strokeColor="@color/lightMediumGray">
+        android:layout_height="match_parent"
+        tools:context="com.example.foody_modern_food_recipe_app.ui.mainActivity.fragments.foodJokeFragment.FoodJokesFragments">
 
-        <TextView
-          android:layout_gravity="center"
-            android:padding="3dp"
-            android:layout_width="wrap_content"
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/food_joke_card"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.">
+            android:layout_marginStart="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.498"
+            app:strokeColor="@color/lightMediumGray">
 
-        </TextView>
+            <TextView
+                android:id="@+id/foodJokeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/courgette"
+                android:padding="10dp"
+                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                android:textSize="20sp"
+                android:textStyle="bold">
 
-    </com.google.android.material.card.MaterialCardView>
+            </TextView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
