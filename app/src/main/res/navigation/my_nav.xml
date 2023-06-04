@@ -18,6 +18,13 @@
         <action
             android:id="@+id/action_recipesFragments_to_detailsActivity"
             app:destination="@id/detailsActivity" />
+        <action
+            android:id="@+id/action_recipesFragments_to_bottomSheetFragment"
+            app:destination="@id/bottomSheetFragment" />
+        <argument
+            android:name="backFromBottomSheet"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragmentsRecipes"
@@ -49,4 +56,13 @@
             android:name="result"
             app:argType="com.example.foody_modern_food_recipe_app.models.Result" />
     </activity>
+    <dialog
+        android:id="@+id/bottomSheetFragment"
+        android:name="com.example.foody_modern_food_recipe_app.ui.mainActivity.fragments.recipesFragments.bottomSheet.BottomSheetFragment"
+        android:label="fragment_bottom_sheet"
+        tools:layout="@layout/fragment_bottom_sheet" >
+        <action
+            android:id="@+id/action_bottomSheetFragment_to_recipesFragments"
+            app:destination="@id/recipesFragments" />
+    </dialog>
 </navigation>

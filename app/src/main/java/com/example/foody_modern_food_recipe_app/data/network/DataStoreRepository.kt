@@ -14,6 +14,7 @@ import com.example.foody_modern_food_recipe_app.util.Constants.Companion.PREFERE
 import com.example.foody_modern_food_recipe_app.util.Constants.Companion.PREFERENCES_NAME
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ActivityRetainedScoped
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -57,7 +58,7 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
 
     }
 
-    val readMealAndDietType: kotlinx.coroutines.flow.Flow<MealAndDietType> = dataStore.data
+    val readMealAndDietType: Flow<MealAndDietType> = dataStore.data
         .catch { exception ->
             if (exception is IOException) {
                 emit(emptyPreferences())

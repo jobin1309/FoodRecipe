@@ -23,6 +23,7 @@
     <color name="yellow">#FFC114</color>
     <color name="green">#00C980</color>
     //Custom chip style
+
     <color name="checkedChipBackgroundColor">#206200EA</color>
     <color name="chipBackgroundColor">@color/lightGray</color>
     <color name="checkedChipTextColor">@color/colorPrimary</color>
@@ -37,6 +38,11 @@
 
     <color name="statusBarColor">@color/colorPrimary</color>
     <color name="contextualStatusBarColor">@color/darker</color>
+
+
+
+
+
 
 
 </resources>

@@ -8,7 +8,10 @@ import android.view.View.GONE
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foody_modern_food_recipe_app.R
 import com.example.foody_modern_food_recipe_app.viewModels.MainViewModel
@@ -23,6 +26,8 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RecipesFragments : Fragment(), SearchView.OnQueryTextListener {
+
+    private val args by navArgs<RecipesFragmentsArgs>()
 
     private var _binding: FragmentRecipesFragmentsBinding? = null
     private val binding get() = _binding!!
@@ -51,6 +56,13 @@ class RecipesFragments : Fragment(), SearchView.OnQueryTextListener {
         setHasOptionsMenu(true)
         setUpRecyclerView();
         readDatabase()
+
+
+        binding.menuBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_recipesFragments_to_bottomSheetFragment)
+        }
+
+
         return binding.root
 
     }
@@ -89,7 +101,7 @@ class RecipesFragments : Fragment(), SearchView.OnQueryTextListener {
 
         lifecycleScope.launch {
             mViewModel.readRecipe.observeOnce(viewLifecycleOwner) { database ->
-                if (database.isNotEmpty()) {
+                if (database.isNotEmpty() && !args.backFromBottomSheet) {
                     Log.d("RecipesFragment", "readDatabase called")
                     mAdapter.setData(database[0].foodRecipe) //recipeEntity is the table of the database, which has only one array of objects, we are the list of food recipe
                     binding.shimmerLayout.stopShimmer()
