@@ -38,7 +38,10 @@
 
     <color name="statusBarColor">@color/colorPrimary</color>
     <color name="contextualStatusBarColor">@color/darker</color>
-
+    <color name="edit_text_border">#FF3700B3</color>
+    <color name="edit_text_background">#f6fbff</color>
+    <color name="app_theme">#FF3700B3</color>
+    <color name="app_theme_light">#f6fbff</color>
 
 
 
